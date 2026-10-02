@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f6f2">
+    <title>Tasks — Daymark</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body data-page="tasks">
+    <main class="planner">
+      <header class="topbar">
+        <a class="brand" href="home.html" aria-label="Daymark home"><span class="brand-mark" aria-hidden="true">d.</span><span>daymark</span></a>
+        <span class="local-note"><span class="sync-dot" aria-hidden="true"></span> Saved on this device</span>
+      </header>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="home.html">Home</a>
+        <a href="index.html">Dashboard</a>
+        <a href="study.html">Study</a>
+        <a href="tasks.html" aria-current="page">Tasks</a>
+        <a href="calendar.html">Calendar</a>
+        <a href="settings.html">Settings</a>
+      </nav>
+      <section class="intro page-intro" aria-labelledby="page-title">
+        <p class="eyebrow" id="today-label"></p>
+        <h1 id="page-title">Your tasks,<br><span>your pace.</span></h1>
+        <p class="intro-copy">Keep the little things moving, one at a time.</p>
+      </section>
+      <p class="notice" id="notice" role="status" hidden></p>
+      <section class="task-panel" aria-label="Your tasks">
+        <form class="task-form" id="task-form">
+          <label class="sr-only" for="task-title">What needs to get done?</label>
+          <span class="plus-icon" aria-hidden="true">+</span>
+          <input id="task-title" name="title" type="text" placeholder="What needs to get done?" maxlength="120" required autocomplete="off">
+          <label class="sr-only" for="task-date">Due date (optional)</label>
+          <input class="date-input" id="task-date" name="dueDate" type="date" aria-label="Due date (optional)">
+          <label class="sr-only" for="task-link">Link (optional)</label>
+          <input class="task-extra-input" id="task-link" name="link" type="url" placeholder="Link (optional)" aria-label="Link (optional)">
+          <label class="sr-only" for="task-note">Note (optional)</label>
+          <input class="task-extra-input" id="task-note" name="note" type="text" placeholder="Note (optional)" maxlength="300" aria-label="Note (optional)">
+          <button class="add-button" type="submit">Add task <span aria-hidden="true">↗</span></button>
+        </form>
+        <div class="list-toolbar">
+          <div class="filters" role="group" aria-label="Filter tasks">
+            <button class="filter-button is-selected" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="filter-button" type="button" data-filter="active" aria-pressed="false">To do</button>
+            <button class="filter-button" type="button" data-filter="completed" aria-pressed="false">Done</button>
+          </div>
+          <p class="task-count" id="task-count" aria-live="polite"></p>
+        </div>
+        <ul class="task-list" id="task-list" aria-label="Task list"></ul>
+        <div class="empty-state" id="empty-state">
+          <span class="empty-icon" aria-hidden="true">✳</span>
+          <p class="empty-title">A fresh start.</p>
+          <p class="empty-copy">Add a task above and take it one step at a time.</p>
+        </div>
+        <div class="list-footer">
+          <span class="footer-sparkle" aria-hidden="true">✳</span>
+          <span id="footer-message">Small steps count, too.</span>
+          <button id="clear-completed" class="clear-button" type="button" hidden>Clear completed</button>
+        </div>
+      </section>
+      <footer class="page-footer"><span>One day at a time.</span><span class="footer-divider" aria-hidden="true">·</span><span>Your plans stay yours.</span></footer>
+    </main>
+  </body>
+</html>

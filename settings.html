@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f6f2">
+    <title>Settings — Daymark</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="google-config.js" defer></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body data-page="settings">
+    <main class="planner">
+      <header class="topbar">
+        <a class="brand" href="home.html" aria-label="Daymark home"><span class="brand-mark" aria-hidden="true">d.</span><span>daymark</span></a>
+        <span class="local-note"><span class="sync-dot" aria-hidden="true"></span> Saved on this device</span>
+      </header>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="home.html">Home</a>
+        <a href="index.html">Dashboard</a>
+        <a href="study.html">Study</a>
+        <a href="tasks.html">Tasks</a>
+        <a href="calendar.html">Calendar</a>
+        <a href="settings.html" aria-current="page">Settings</a>
+      </nav>
+      <section class="intro page-intro" aria-labelledby="page-title">
+        <p class="eyebrow">Your planner</p>
+        <h1 id="page-title">Simple by design.<br><span>Yours by default.</span></h1>
+        <p class="intro-copy">A few details about how Daymark keeps your plans.</p>
+      </section>
+      <p class="notice" id="notice" role="status" hidden></p>
+      <section class="settings-panel task-panel" aria-label="Planner settings">
+        <div class="setting-row">
+          <div class="setting-icon" aria-hidden="true">◉</div>
+          <div class="setting-content">
+            <h2>Your data</h2>
+            <p>Your tasks are stored in this browser on this device. They are not uploaded to an account or synced across devices.</p>
+          </div>
+          <span class="setting-badge">On this device</span>
+        </div>
+        <div class="setting-row">
+          <div class="setting-icon" aria-hidden="true">▦</div>
+          <div class="setting-content">
+            <h2>Google Calendar</h2>
+            <p id="google-sync-status">Your due dates are visible in the Daymark calendar. Connect Google to sync tasks and calendar events.</p>
+          </div>
+          <button class="sync-button" id="google-sync-button" type="button">Connect &amp; sync</button>
+        </div>
+        <div class="google-setup">
+          <h3>One-time setup</h3>
+          <ol>
+            <li>In <a href="https://console.cloud.google.com/apis/credentials" target="_blank" rel="noopener noreferrer">Google Cloud Console</a>, enable the Google Calendar API, configure the OAuth consent screen, and create an OAuth Client ID for a web application.</li>
+            <li>Add your site origin (for example, <code>http://localhost:5500</code>) to Authorized JavaScript origins. Open Daymark through that local server; Google OAuth does not work from a <code>file://</code> URL.</li>
+            <li>Paste the Client ID into <code>google-config.js</code>. Do not add a client secret to this website.</li>
+          </ol>
+          <p>Sync imports events from your primary calendar as dated tasks and publishes dated Daymark tasks as all-day events. Timed events keep their calendar date in Daymark; recurring events are imported as individual occurrences. Tasks without due dates are not sent, and completion status stays in Daymark. Sync checks from 30 days ago through the next year. Google access tokens are kept in memory only.</p>
+        </div>
+        <div class="setting-row danger-row">
+          <div class="setting-icon" aria-hidden="true">⌫</div>
+          <div class="setting-content">
+            <h2>Clear all tasks</h2>
+            <p>Remove every task saved in this browser. Linked Google Calendar events will also be deleted on your next sync.</p>
+          </div>
+          <button class="danger-button" id="clear-all-tasks" type="button">Clear all</button>
+        </div>
+      </section>
+      <footer class="page-footer"><span>One day at a time.</span><span class="footer-divider" aria-hidden="true">·</span><span>Your plans stay yours.</span></footer>
+    </main>
+  </body>
+</html>

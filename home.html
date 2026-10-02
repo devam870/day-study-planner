@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f6f2">
+    <meta name="description" content="Daymark is a calm, simple personal planner for your tasks and plans.">
+    <title>Home — Daymark</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body data-page="home">
+    <main class="planner home-planner">
+      <header class="topbar">
+        <a class="brand" href="home.html" aria-label="Daymark home">
+          <span class="brand-mark" aria-hidden="true">d.</span>
+          <span>daymark</span>
+        </a>
+        <a class="home-open-link" href="index.html">Open planner <span aria-hidden="true">↗</span></a>
+      </header>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="home.html" aria-current="page">Home</a>
+        <a href="index.html">Dashboard</a>
+        <a href="study.html">Study</a>
+        <a href="tasks.html">Tasks</a>
+        <a href="calendar.html">Calendar</a>
+        <a href="settings.html">Settings</a>
+      </nav>
+
+      <section class="home-hero" aria-labelledby="home-title">
+        <div class="home-hero-copy">
+          <p class="eyebrow">A calmer way to plan</p>
+          <h1 id="home-title">Make room for<br><span>what matters.</span></h1>
+          <p class="intro-copy">Keep your tasks in one gentle, simple place. Make a plan, find your focus, and take the next small step.</p>
+          <div class="home-actions">
+            <a class="home-primary-button" href="index.html">Go to dashboard <span aria-hidden="true">↗</span></a>
+            <a class="home-secondary-link" href="tasks.html">View my tasks <span aria-hidden="true">→</span></a>
+          </div>
+          <p class="home-privacy"><span class="sync-dot" aria-hidden="true"></span> Your tasks stay on this device.</p>
+        </div>
+        <div class="home-preview" aria-label="Planner preview">
+          <div class="preview-topline">
+            <span class="preview-dot" aria-hidden="true"></span>
+            <span class="preview-date">A little focus for today</span>
+            <span class="preview-menu" aria-hidden="true">···</span>
+          </div>
+          <div class="preview-heading">One thing at a time.</div>
+          <div class="preview-task preview-task-complete">
+            <span class="preview-check" aria-hidden="true">✓</span>
+            <span>Make a little time for yourself</span>
+          </div>
+          <div class="preview-task">
+            <span class="preview-check" aria-hidden="true"></span>
+            <span>Write down what matters today</span>
+          </div>
+          <div class="preview-task preview-task-muted">
+            <span class="preview-check" aria-hidden="true"></span>
+            <span>Take the next small step</span>
+          </div>
+          <div class="preview-note"><span aria-hidden="true">✳</span> Small steps count, too.</div>
+        </div>
+      </section>
+
+      <section class="home-features" aria-label="Planner features">
+        <article class="home-feature-card">
+          <span class="feature-icon" aria-hidden="true">○</span>
+          <h2>Keep it simple</h2>
+          <p>Capture your to-dos, add an optional due date, and get back to what you were doing.</p>
+        </article>
+        <article class="home-feature-card">
+          <span class="feature-icon" aria-hidden="true">▦</span>
+          <h2>See what’s ahead</h2>
+          <p>Check your upcoming plans in a calendar view and keep your day in perspective.</p>
+        </article>
+        <article class="home-feature-card">
+          <span class="feature-icon" aria-hidden="true">⌁</span>
+          <h2>Study with focus</h2>
+          <p>Track exam dates, plan your week, and make focused study sessions count.</p>
+        </article>
+      </section>
+      <p class="home-study-link"><a href="study.html">Explore study tools <span aria-hidden="true">→</span></a></p>
+
+      <footer class="page-footer">
+        <span>One day at a time.</span>
+        <span class="footer-divider" aria-hidden="true">·</span>
+        <span>Your plans stay yours.</span>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f6f2">
+    <title>Study planner — Daymark</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body data-page="study">
+    <main class="planner study-planner">
+      <header class="topbar">
+        <a class="brand" href="home.html" aria-label="Daymark home"><span class="brand-mark" aria-hidden="true">d.</span><span>daymark</span></a>
+        <span class="local-note"><span class="sync-dot" aria-hidden="true"></span> Saved on this device</span>
+      </header>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="home.html">Home</a>
+        <a href="index.html">Dashboard</a>
+        <a href="study.html" aria-current="page">Study</a>
+        <a href="tasks.html">Tasks</a>
+        <a href="calendar.html">Calendar</a>
+        <a href="settings.html">Settings</a>
+      </nav>
+      <section class="intro page-intro" aria-labelledby="page-title">
+        <p class="eyebrow" id="study-today-label"></p>
+        <h1 id="page-title">Study with<br><span>a little more focus.</span></h1>
+        <p class="intro-copy">A clear plan, a focused session, and steady progress add up.</p>
+      </section>
+      <p class="notice" id="study-notice" role="status" hidden></p>
+
+      <section class="study-section ai-planner-section" aria-labelledby="ai-planner-heading">
+        <div class="study-section-heading">
+          <div><p class="eyebrow">A plan shaped around your exam</p><h2 id="ai-planner-heading">AI study planner</h2></div>
+          <span class="ai-badge">Gemini</span>
+        </div>
+        <p class="ai-explainer">Tell Gemini what you need to cover and when your exam is. It will suggest dated study sessions you can add to your task list.</p>
+        <form class="study-form ai-plan-form" id="ai-plan-form">
+          <label for="ai-subject">Subject
+            <input id="ai-subject" type="text" maxlength="80" placeholder="e.g. Biology" required>
+          </label>
+          <label for="ai-exam-date">Exam date
+            <input id="ai-exam-date" type="date" required>
+          </label>
+          <label for="ai-daily-minutes">Study minutes per day
+            <input id="ai-daily-minutes" type="number" min="15" max="480" step="15" value="90" required>
+          </label>
+          <label class="ai-chapters-label" for="ai-chapters">Topics or chapters (one per line)
+            <textarea id="ai-chapters" rows="4" maxlength="3000" placeholder="Cell structure&#10;Genetics&#10;Ecology" required></textarea>
+          </label>
+          <button class="add-button" id="generate-plan" type="submit">Generate study plan <span aria-hidden="true">✦</span></button>
+        </form>
+        <p class="ai-privacy">Your subject, topics, exam date, and daily study limit are sent to <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer">Google Gemini</a> through the local backend. In PowerShell, set <code>$env:GEMINI_API_KEY="YOUR_GEMINI_API_KEY"</code>, then run <code>python server.py</code> from the project folder and open <code>http://localhost:8000/</code>. Keep your key private; it stays on the server and is never placed in the browser.</p>
+        <div class="generated-plan" id="generated-plan" hidden>
+          <div class="generated-plan-heading">
+            <h3>Your suggested sessions</h3>
+            <button class="add-button" id="add-plan-to-tasks" type="button">Add sessions to tasks</button>
+          </div>
+          <div class="generated-plan-list" id="generated-plan-list"></div>
+        </div>
+      </section>
+
+      <section class="study-section" aria-labelledby="exams-heading">
+        <div class="study-section-heading">
+          <div><p class="eyebrow">Keep the date in sight</p><h2 id="exams-heading">Exam countdown</h2></div>
+        </div>
+        <form class="study-form exam-form" id="exam-form">
+          <label class="sr-only" for="exam-name">Exam name or subject</label>
+          <input id="exam-name" name="name" type="text" placeholder="Exam name or subject" maxlength="100" required>
+          <label class="sr-only" for="exam-date">Exam date</label>
+          <input id="exam-date" name="date" type="date" required>
+          <button class="add-button" type="submit">Add exam <span aria-hidden="true">↗</span></button>
+        </form>
+        <div class="exam-list" id="exam-list"></div>
+        <div class="study-empty" id="exam-empty">No exams yet. Add one to start a countdown.</div>
+      </section>
+
+      <section class="study-section pomodoro-section" aria-labelledby="pomodoro-heading">
+        <div class="study-section-heading">
+          <div><p class="eyebrow">Focus, then rest</p><h2 id="pomodoro-heading">Pomodoro timer</h2></div>
+          <div class="timer-mode" id="timer-mode">Study session</div>
+        </div>
+        <div class="pomodoro-body">
+          <label class="subject-picker" for="timer-subject">Study subject
+            <input id="timer-subject" type="text" maxlength="80" placeholder="e.g. Biology" autocomplete="off">
+          </label>
+          <div class="timer-display" id="timer-display" aria-live="polite">25:00</div>
+          <p class="timer-caption" id="timer-caption">A focused 25-minute study session.</p>
+          <div class="timer-actions">
+            <button class="add-button" id="timer-start" type="button">Start focus</button>
+            <button class="timer-secondary" id="timer-reset" type="button">Reset</button>
+          </div>
+          <p class="timer-log-summary" id="timer-log-summary">No study sessions logged yet.</p>
+        </div>
+        <div class="subject-time-totals" id="subject-time-totals" aria-label="Study time by subject"></div>
+        <div class="study-log-list" id="study-log-list" aria-label="Recent study sessions"></div>
+      </section>
+
+      <section class="study-section" aria-labelledby="timetable-heading">
+        <div class="study-section-heading">
+          <div><p class="eyebrow">Make a little room for learning</p><h2 id="timetable-heading">Weekly timetable</h2></div>
+        </div>
+        <form class="study-form timetable-form" id="timetable-form">
+          <label class="sr-only" for="schedule-title">Class or study block</label>
+          <input id="schedule-title" type="text" placeholder="Class or study block" maxlength="100" required>
+          <label class="sr-only" for="schedule-subject">Subject</label>
+          <input id="schedule-subject" type="text" placeholder="Subject (optional)" maxlength="80">
+          <label class="sr-only" for="schedule-day">Day</label>
+          <select id="schedule-day" required>
+            <option value="1">Monday</option><option value="2">Tuesday</option><option value="3">Wednesday</option>
+            <option value="4">Thursday</option><option value="5">Friday</option><option value="6">Saturday</option><option value="0">Sunday</option>
+          </select>
+          <label class="sr-only" for="schedule-start">Start time</label>
+          <input id="schedule-start" type="time" required>
+          <label class="sr-only" for="schedule-end">End time</label>
+          <input id="schedule-end" type="time" required>
+          <button class="add-button" type="submit">Add block <span aria-hidden="true">↗</span></button>
+        </form>
+        <div class="timetable-grid" id="timetable-grid"></div>
+        <div class="study-empty" id="timetable-empty">Add classes or study blocks to build your week.</div>
+      </section>
+
+      <section class="study-section" aria-labelledby="syllabus-heading">
+        <div class="study-section-heading">
+          <div><p class="eyebrow">One chapter at a time</p><h2 id="syllabus-heading">Syllabus checklist</h2></div>
+        </div>
+        <form class="study-form syllabus-subject-form" id="syllabus-subject-form">
+          <label class="sr-only" for="syllabus-subject-name">Subject name</label>
+          <input id="syllabus-subject-name" type="text" placeholder="New subject" maxlength="80" required>
+          <button class="add-button" type="submit">Add subject <span aria-hidden="true">↗</span></button>
+        </form>
+        <div class="syllabus-list" id="syllabus-list"></div>
+        <div class="study-empty" id="syllabus-empty">Add a subject, then break its syllabus into chapters.</div>
+      </section>
+
+      <footer class="page-footer"><span>One day at a time.</span><span class="footer-divider" aria-hidden="true">·</span><span>Your plans stay yours.</span></footer>
+    </main>
+  </body>
+</html>

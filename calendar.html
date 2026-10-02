@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f6f2">
+    <title>Calendar — Daymark</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body data-page="calendar">
+    <main class="planner">
+      <header class="topbar">
+        <a class="brand" href="home.html" aria-label="Daymark home"><span class="brand-mark" aria-hidden="true">d.</span><span>daymark</span></a>
+        <span class="local-note"><span class="sync-dot" aria-hidden="true"></span> Saved on this device</span>
+      </header>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="home.html">Home</a>
+        <a href="index.html">Dashboard</a>
+        <a href="study.html">Study</a>
+        <a href="tasks.html">Tasks</a>
+        <a href="calendar.html" aria-current="page">Calendar</a>
+        <a href="settings.html">Settings</a>
+      </nav>
+      <section class="intro page-intro" aria-labelledby="page-title">
+        <p class="eyebrow">Plan in view</p>
+        <h1 id="page-title">A little space<br><span>to plan ahead.</span></h1>
+        <p class="intro-copy">See your dated tasks at a glance. Sync with Google Calendar from Settings.</p>
+      </section>
+      <p class="notice" id="notice" role="status" hidden></p>
+      <section class="task-panel calendar-panel" aria-label="Task calendar">
+        <div class="calendar-toolbar">
+          <button class="month-button" id="previous-month" type="button" aria-label="Previous month">←</button>
+          <h2 class="month-title" id="month-title"></h2>
+          <button class="month-button" id="next-month" type="button" aria-label="Next month">→</button>
+          <button class="today-button" id="this-month" type="button">Today</button>
+        </div>
+        <div class="calendar-grid" id="calendar-grid" role="grid" aria-label="Monthly task calendar"></div>
+        <div class="calendar-legend"><span class="legend-dot" aria-hidden="true"></span> Tasks due</div>
+        <p class="calendar-note">Tasks without a due date are listed on your <a href="tasks.html">Tasks page</a>.</p>
+      </section>
+      <footer class="page-footer"><span>One day at a time.</span><span class="footer-divider" aria-hidden="true">·</span><span>Your plans stay yours.</span></footer>
+    </main>
+  </body>
+</html>
